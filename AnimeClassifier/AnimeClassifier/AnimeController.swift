@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class AnimeController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
