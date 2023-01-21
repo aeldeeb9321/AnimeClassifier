@@ -16,6 +16,10 @@
 		2510DBB0297C8D0100FD9575 /* Constants .swift in Sources */ = {isa = PBXBuildFile; fileRef = 2510DBAF297C8D0100FD9575 /* Constants .swift */; };
 		2510DBB2297C8D0F00FD9575 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2510DBB1297C8D0F00FD9575 /* Service.swift */; };
 		2510DBB4297C8E9800FD9575 /* Moe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2510DBB3297C8E9800FD9575 /* Moe.swift */; };
+		2510DBB6297C916A00FD9575 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2510DBB5297C916A00FD9575 /* ImageCell.swift */; };
+		2510DBB8297C917600FD9575 /* VideoDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2510DBB7297C917600FD9575 /* VideoDetailCell.swift */; };
+		2510DBBA297C986600FD9575 /* HeaderOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2510DBB9297C986600FD9575 /* HeaderOptions.swift */; };
+		2510DBBC297C98C900FD9575 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2510DBBB297C98C900FD9575 /* HeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +34,10 @@
 		2510DBAF297C8D0100FD9575 /* Constants .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants .swift"; sourceTree = "<group>"; };
 		2510DBB1297C8D0F00FD9575 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		2510DBB3297C8E9800FD9575 /* Moe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Moe.swift; sourceTree = "<group>"; };
+		2510DBB5297C916A00FD9575 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		2510DBB7297C917600FD9575 /* VideoDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailCell.swift; sourceTree = "<group>"; };
+		2510DBB9297C986600FD9575 /* HeaderOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderOptions.swift; sourceTree = "<group>"; };
+		2510DBBB297C98C900FD9575 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +78,6 @@
 				2510DBA7297C8CD200FD9575 /* Utils */,
 				2510DB92297C8C5000FD9575 /* AppDelegate.swift */,
 				2510DB94297C8C5000FD9575 /* SceneDelegate.swift */,
-				2510DB96297C8C5000FD9575 /* AnimeController.swift */,
 				2510DB9B297C8C5000FD9575 /* Assets.xcassets */,
 				2510DB9D297C8C5000FD9575 /* LaunchScreen.storyboard */,
 				2510DBA0297C8C5000FD9575 /* Info.plist */,
@@ -105,6 +112,7 @@
 		2510DBAA297C8CE100FD9575 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				2510DB96297C8C5000FD9575 /* AnimeController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -112,6 +120,9 @@
 		2510DBAB297C8CE700FD9575 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2510DBB5297C916A00FD9575 /* ImageCell.swift */,
+				2510DBB7297C917600FD9575 /* VideoDetailCell.swift */,
+				2510DBBB297C98C900FD9575 /* HeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -120,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				2510DBB3297C8E9800FD9575 /* Moe.swift */,
+				2510DBB9297C986600FD9575 /* HeaderOptions.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -195,10 +207,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2510DBB0297C8D0100FD9575 /* Constants .swift in Sources */,
+				2510DBB8297C917600FD9575 /* VideoDetailCell.swift in Sources */,
 				2510DB97297C8C5000FD9575 /* AnimeController.swift in Sources */,
 				2510DBB4297C8E9800FD9575 /* Moe.swift in Sources */,
 				2510DB93297C8C5000FD9575 /* AppDelegate.swift in Sources */,
 				2510DB95297C8C5000FD9575 /* SceneDelegate.swift in Sources */,
+				2510DBB6297C916A00FD9575 /* ImageCell.swift in Sources */,
+				2510DBBC297C98C900FD9575 /* HeaderView.swift in Sources */,
+				2510DBBA297C986600FD9575 /* HeaderOptions.swift in Sources */,
 				2510DBAE297C8CF600FD9575 /* Extensions.swift in Sources */,
 				2510DBB2297C8D0F00FD9575 /* Service.swift in Sources */,
 			);
@@ -344,7 +360,6 @@
 				INFOPLIST_FILE = AnimeClassifier/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -372,7 +387,6 @@
 				INFOPLIST_FILE = AnimeClassifier/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

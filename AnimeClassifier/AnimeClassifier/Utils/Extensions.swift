@@ -89,8 +89,8 @@ extension UILabel {
         return makeLabel(withText: text, textColor: .label, withFont: .systemFont(ofSize: 18))
     }
     
-    func subTextLabel(withText text: String? = nil) -> UILabel {
-        return makeLabel(withText: text, textColor: .label, withFont: .systemFont(ofSize: 16))
+    func headerTextLabel(withText text: String? = nil) -> UILabel {
+        return makeLabel(withText: text, textColor: .white, withFont: .boldSystemFont(ofSize: 16))
     }
 }
 
