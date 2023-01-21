@@ -16,6 +16,12 @@ class AnimeController: UICollectionViewController {
     //MARK: - Properties
     static let categoryHeader = "catHeader"
     
+    private var searchResults = [Anime]() {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
+    
     private lazy var imagePicker: UIImagePickerController = {
         let controller = UIImagePickerController()
         controller.delegate = self
@@ -60,6 +66,7 @@ class AnimeController: UICollectionViewController {
         super.viewDidLoad()
         configureCV()
         configureNavBar()
+        fetchAnimeData()
     }
     
     
@@ -79,11 +86,23 @@ class AnimeController: UICollectionViewController {
     }
     
     private func configureCV() {
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseId)
+        collectionView.register(ImageCell.self, forCellWithReuseIdentifier: reuseId)
         collectionView.register(HeaderView.self, forSupplementaryViewOfKind: AnimeController.categoryHeader, withReuseIdentifier: headerId)
         collectionView.backgroundColor = UIColor(patternImage: (UIImage(named: "background")?.withRenderingMode(.alwaysOriginal))!)
     }
 
+    private func fetchAnimeData() {
+        Service.shared.fetchData { result in
+            switch result {
+            case .success(let moe):
+                DispatchQueue.main.async {
+                    self.searchResults = moe.result
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
     //MARK: - Selectors
     @objc private func searchButtonTapped() {
         
@@ -111,8 +130,8 @@ extension AnimeController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath)
-        cell.backgroundColor = .systemGroupedBackground
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath) as! ImageCell
+        cell.anime = searchResults[indexPath.item]
         cell.layer.cornerRadius = 12
         cell.layer.shadowColor = UIColor.systemGreen.cgColor
         cell.layer.shadowOpacity = 1
@@ -121,7 +140,7 @@ extension AnimeController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        12
+        searchResults.count
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {

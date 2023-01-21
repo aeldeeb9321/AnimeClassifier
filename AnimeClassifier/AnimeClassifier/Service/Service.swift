@@ -19,7 +19,7 @@ final class Service {
     private var images = NSCache<NSString, NSData>()
     
     func fetchData(completion: @escaping(Result<Moe, NetworkError>) -> ()) {
-        guard let url = URL(string: "") else { return }
+        guard let url = URL(string: "https://api.trace.moe/search?url=https://images.plurk.com/32B15UXxymfSMwKGTObY5e.jpg") else { return }
         
         session.dataTask(with: url) { data, response, error in
             guard error == nil else{
@@ -54,7 +54,8 @@ final class Service {
     }
     
     func fetchImage(urlString: String, completion: @escaping(Data?, NetworkError?) -> ()) {
-        guard let url = URL(string: urlString) else { return }
+        
+        guard let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed), let url = URL(string: encodedString) else { return }
         
         if let imageData = images.object(forKey: url.absoluteString as NSString) {
             completion(imageData as Data, nil)
