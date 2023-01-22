@@ -66,7 +66,7 @@ class AnimeController: UICollectionViewController {
         super.viewDidLoad()
         configureCV()
         configureNavBar()
-        fetchAnimeData()
+        fetchAnimeData(withUrl: "https://images.plurk.com/32B15UXxymfSMwKGTObY5e.jpg")
     }
     
     
@@ -91,8 +91,8 @@ class AnimeController: UICollectionViewController {
         collectionView.backgroundColor = UIColor(patternImage: (UIImage(named: "background")?.withRenderingMode(.alwaysOriginal))!)
     }
 
-    private func fetchAnimeData() {
-        Service.shared.fetchData(withImageUrl: "https://images.plurk.com/32B15UXxymfSMwKGTObY5e.jpg") { result in
+    private func fetchAnimeData(withUrl url: String) {
+        Service.shared.fetchData(withImageUrl: url) { result in
             switch result {
             case .success(let moe):
                 DispatchQueue.main.async {
@@ -117,6 +117,10 @@ class AnimeController: UICollectionViewController {
 extension AnimeController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let selectedImage = info[.editedImage] as? UIImage else { return }
+        
+        ImageService.shared.registerImage(animeImage: selectedImage) { urlString in
+            self.fetchAnimeData(withUrl: urlString)
+        }
         dismiss(animated: true)
     }
 }

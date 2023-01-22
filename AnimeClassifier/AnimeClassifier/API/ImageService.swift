@@ -23,7 +23,7 @@ struct ImageService {
         }
         
         //now that we have the imageData we need to make a unique filename for our data
-        let filename = UUID().uuidString
+        let filename = NSUUID().uuidString
         
         //create a storage reference, i.e. where we want to put our data
         let storageRef = STORAGE_ANIME_IMAGES.child(filename)
@@ -33,7 +33,7 @@ struct ImageService {
             //how to get the download url
             storageRef.downloadURL { url, error in
                 guard let animeImageUrl = url?.absoluteString else{ return }
-                self.imageUrls.setObject(animeImageUrl as NSString, forKey: imageData as NSData)
+                imageUrls.setObject(animeImageUrl as NSString, forKey: imageData as NSData)
                 completion(animeImageUrl)
             }
         }

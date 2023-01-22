@@ -11,6 +11,13 @@ import AVFoundation
 
 class DetailContentCell: UICollectionViewCell {
     //MARK: - Properties
+    var anime: Anime? {
+        didSet {
+            guard let anime = anime else { return }
+            //we are calling this function to add the sublayer to the videoview once result is set, if we did this within the property then it would be called once it is initialized instead which is too soon.
+            setupVideoLayer()
+        }
+    }
     private lazy var videoView: UIView = {
         let view = UIView()
         view.clipsToBounds = true
@@ -53,5 +60,18 @@ class DetailContentCell: UICollectionViewCell {
     }
     
     //MARK: - Helpers
-    
+    private func setupVideoLayer() {
+        videoView.layer.sublayers?.removeAll()
+        guard let anime = anime else { return }
+        guard let videoUrl = URL(string: anime.videoUrlString) else { return }
+        let avPlayer = AVPlayer(url: videoUrl)
+        avPlayer.play()
+        avPlayer.isMuted = true
+        //The AVPlayerLayer is an object that can render the visual contents of a player object, this object has a property video gravity which allows us to scale and resize the video
+        let playerLayer = AVPlayerLayer(player: avPlayer)
+        // the player layer now needs a frame
+        playerLayer.frame = videoView.bounds
+        videoView.layer.addSublayer(playerLayer)
+
+    }
 }

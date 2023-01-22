@@ -43,6 +43,7 @@ class ImageCell: UICollectionViewCell {
     
     //MARK: - Helpers
     private func configureCellUI() {
+        clipsToBounds = true
         addSubview(cellImageView)
         cellImageView.fillSuperView(inView: self)
     }
