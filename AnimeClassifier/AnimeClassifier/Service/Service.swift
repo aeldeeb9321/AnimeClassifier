@@ -18,8 +18,9 @@ final class Service {
     private let session = URLSession(configuration: .default)
     private var images = NSCache<NSString, NSData>()
     
-    func fetchData(completion: @escaping(Result<Moe, NetworkError>) -> ()) {
-        guard let url = URL(string: "https://api.trace.moe/search?url=https://images.plurk.com/32B15UXxymfSMwKGTObY5e.jpg") else { return }
+    func fetchData(withImageUrl imageUrl: String,completion: @escaping(Result<Moe, NetworkError>) -> ()) {
+        //We are doing urlEncoding in order to avoid an invalid server response, url encoding converts characters into a format that can be transmitted over the internet. URLs can only be sent over the internet using the ASCII character-set. Since URLs often contain characters outside the ASCII set, the url has to be converted into a valid ASCII format. (.addPercentEncoding is a method that can be set for any string)
+        guard let localUrl = imageUrl.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed),let url = URL(string: "https://api.trace.moe/search?url=\(localUrl)") else { return }
         
         session.dataTask(with: url) { data, response, error in
             guard error == nil else{
@@ -54,8 +55,7 @@ final class Service {
     }
     
     func fetchImage(urlString: String, completion: @escaping(Data?, NetworkError?) -> ()) {
-        
-        guard let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed), let url = URL(string: encodedString) else { return }
+        guard let url = URL(string: urlString) else { return }
         
         if let imageData = images.object(forKey: url.absoluteString as NSString) {
             completion(imageData as Data, nil)

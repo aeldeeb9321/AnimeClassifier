@@ -92,7 +92,7 @@ class AnimeController: UICollectionViewController {
     }
 
     private func fetchAnimeData() {
-        Service.shared.fetchData { result in
+        Service.shared.fetchData(withImageUrl: "https://images.plurk.com/32B15UXxymfSMwKGTObY5e.jpg") { result in
             switch result {
             case .success(let moe):
                 DispatchQueue.main.async {
@@ -132,10 +132,12 @@ extension AnimeController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath) as! ImageCell
         cell.anime = searchResults[indexPath.item]
+        //cell.backgroundColor = .systemGroupedBackground
         cell.layer.cornerRadius = 12
         cell.layer.shadowColor = UIColor.systemGreen.cgColor
         cell.layer.shadowOpacity = 1
         cell.layer.shadowRadius = 6
+        cell.clipsToBounds = true
         return cell
     }
     

@@ -15,7 +15,9 @@ class ImageCell: UICollectionViewCell {
             
             Service.shared.fetchImage(urlString: anime.imageUrlString) { data, error in
                 if let data = data {
-                    self.cellImageView.image = UIImage(data: data)
+                    DispatchQueue.main.async {
+                        self.cellImageView.image = UIImage(data: data)
+                    }
                 }
             }
         }
