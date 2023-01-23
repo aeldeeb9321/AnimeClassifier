@@ -17,7 +17,7 @@
 		2510DBB2297C8D0F00FD9575 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2510DBB1297C8D0F00FD9575 /* Service.swift */; };
 		2510DBB4297C8E9800FD9575 /* Moe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2510DBB3297C8E9800FD9575 /* Moe.swift */; };
 		2510DBB6297C916A00FD9575 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2510DBB5297C916A00FD9575 /* ImageCell.swift */; };
-		2510DBB8297C917600FD9575 /* VideoDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2510DBB7297C917600FD9575 /* VideoDetailCell.swift */; };
+		2510DBB8297C917600FD9575 /* DetailContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2510DBB7297C917600FD9575 /* DetailContentCell.swift */; };
 		2510DBBA297C986600FD9575 /* HeaderOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2510DBB9297C986600FD9575 /* HeaderOptions.swift */; };
 		2510DBBC297C98C900FD9575 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2510DBBB297C98C900FD9575 /* HeaderView.swift */; };
 		2510DBBE297DE5B400FD9575 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2510DBBD297DE5B400FD9575 /* ImageService.swift */; };
@@ -38,7 +38,7 @@
 		2510DBB1297C8D0F00FD9575 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		2510DBB3297C8E9800FD9575 /* Moe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Moe.swift; sourceTree = "<group>"; };
 		2510DBB5297C916A00FD9575 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
-		2510DBB7297C917600FD9575 /* VideoDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailCell.swift; sourceTree = "<group>"; };
+		2510DBB7297C917600FD9575 /* DetailContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailContentCell.swift; sourceTree = "<group>"; };
 		2510DBB9297C986600FD9575 /* HeaderOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderOptions.swift; sourceTree = "<group>"; };
 		2510DBBB297C98C900FD9575 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		2510DBBD297DE5B400FD9575 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
@@ -129,7 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				2510DBB5297C916A00FD9575 /* ImageCell.swift */,
-				2510DBB7297C917600FD9575 /* VideoDetailCell.swift */,
+				2510DBB7297C917600FD9575 /* DetailContentCell.swift */,
 				2510DBBB297C98C900FD9575 /* HeaderView.swift */,
 			);
 			path = View;
@@ -222,7 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2510DBB0297C8D0100FD9575 /* Constants .swift in Sources */,
-				2510DBB8297C917600FD9575 /* VideoDetailCell.swift in Sources */,
+				2510DBB8297C917600FD9575 /* DetailContentCell.swift in Sources */,
 				2510DB97297C8C5000FD9575 /* AnimeController.swift in Sources */,
 				2510DBB4297C8E9800FD9575 /* Moe.swift in Sources */,
 				2510DB93297C8C5000FD9575 /* AppDelegate.swift in Sources */,

@@ -14,6 +14,10 @@ class DetailContentCell: UICollectionViewCell {
     var anime: Anime? {
         didSet {
             guard let anime = anime else { return }
+            self.filenameLabel.text = anime.fileName
+            self.episodeLabel.text = "Episode: \(anime.episode)"
+            self.timeFrameLabel.text = "Time \(anime.from.toTime()) - \(anime.to.toTime())"
+            self.similarityLabel.text = "Similarity: \(anime.similarity.toPercent())"
             //we are calling this function to add the sublayer to the videoview once result is set, if we did this within the property then it would be called once it is initialized instead which is too soon.
             setupVideoLayer()
         }
@@ -25,7 +29,8 @@ class DetailContentCell: UICollectionViewCell {
         //16:9 is the aspect ratio for all HD videos
         let height = (self.frame.width * 9 / 16) - 10
         let width = self.frame.width - 20
-        view.setDimensions(height: height / 2, width: width)
+        view.setDimensions(height: height, width: width)
+        view.layer.cornerRadius = 8
         return view
     }()
     
@@ -35,12 +40,12 @@ class DetailContentCell: UICollectionViewCell {
     }()
     
     private let episodeLabel: UILabel = {
-        let label = UILabel().makebodyLabel(withText: "Episode: ")
+        let label = UILabel().makebodyLabel()
         return label
     }()
     
     private let timeFrameLabel: UILabel = {
-        let label = UILabel().makebodyLabel(withText: "Time: ")
+        let label = UILabel().makebodyLabel()
         return label
     }()
     
@@ -52,7 +57,7 @@ class DetailContentCell: UICollectionViewCell {
     //MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        configureCellComponents()
     }
     
     required init?(coder: NSCoder) {
@@ -60,6 +65,28 @@ class DetailContentCell: UICollectionViewCell {
     }
     
     //MARK: - Helpers
+    private func configureCellComponents() {
+        addSubview(videoView)
+        videoView.anchor(top: safeAreaLayoutGuide.topAnchor, leading: safeAreaLayoutGuide.leadingAnchor, trailing: safeAreaLayoutGuide.trailingAnchor, paddingTop: 12, paddingLeading: 12, paddingTrailing: 12)
+        
+        addSubview(filenameLabel)
+        filenameLabel.anchor(top: videoView.bottomAnchor, leading: safeAreaLayoutGuide.leadingAnchor, trailing: safeAreaLayoutGuide.trailingAnchor, paddingTop: 12, paddingLeading: 8, paddingTrailing: 8)
+        
+        let infoStack = UIStackView(arrangedSubviews: [episodeLabel, timeFrameLabel])
+        infoStack.spacing = 16
+        infoStack.distribution = .fillProportionally
+        infoStack.axis = .horizontal
+        
+        addSubview(infoStack)
+        infoStack.anchor(top: filenameLabel.bottomAnchor, leading: safeAreaLayoutGuide.leadingAnchor, trailing: safeAreaLayoutGuide.trailingAnchor, paddingTop: 12, paddingLeading: 16, paddingTrailing: 16)
+        
+        addSubview(similarityLabel)
+        similarityLabel.centerX(inView: self)
+        similarityLabel.anchor(top: infoStack.bottomAnchor, bottom: safeAreaLayoutGuide.bottomAnchor, paddingTop: 16, paddingBottom: 16)
+        
+    }
+    
+    
     private func setupVideoLayer() {
         videoView.layer.sublayers?.removeAll()
         guard let anime = anime else { return }

@@ -146,4 +146,28 @@ extension Decimal {
     }
 }
 
+extension TimeInterval {
+    var dateFormatter: DateComponentsFormatter {
+        let formatter = DateComponentsFormatter()
+        return formatter
+    }
+    
+    func toTime() -> String {
+        return dateFormatter.string(from: self) ?? "1:11"
+    }
+}
 
+extension Float {
+    var numberFormatter: NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.usesGroupingSeparator = false
+        formatter.minimumFractionDigits = 2
+        formatter.maximumFractionDigits = 2
+        formatter.numberStyle = .percent
+        return formatter
+    }
+    
+    func toPercent() -> String {
+        return numberFormatter.string(for: self) ?? "0%"
+    }
+}

@@ -11,6 +11,7 @@ import AVFoundation
 
 private let reuseId = "reuseId"
 private let headerId = "headerId"
+private let detailId = "detailCellId"
 
 class AnimeController: UICollectionViewController {
     //MARK: - Properties
@@ -87,6 +88,7 @@ class AnimeController: UICollectionViewController {
     
     private func configureCV() {
         collectionView.register(ImageCell.self, forCellWithReuseIdentifier: reuseId)
+        collectionView.register(DetailContentCell.self, forCellWithReuseIdentifier: detailId)
         collectionView.register(HeaderView.self, forSupplementaryViewOfKind: AnimeController.categoryHeader, withReuseIdentifier: headerId)
         collectionView.backgroundColor = UIColor(patternImage: (UIImage(named: "background")?.withRenderingMode(.alwaysOriginal))!)
     }
@@ -134,15 +136,25 @@ extension AnimeController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath) as! ImageCell
-        cell.anime = searchResults[indexPath.item]
-        //cell.backgroundColor = .systemGroupedBackground
-        cell.layer.cornerRadius = 12
-        cell.layer.shadowColor = UIColor.systemGreen.cgColor
-        cell.layer.shadowOpacity = 1
-        cell.layer.shadowRadius = 6
-        cell.clipsToBounds = true
-        return cell
+        if indexPath.section == 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath) as! ImageCell
+            cell.anime = searchResults[indexPath.item]
+            //cell.backgroundColor = .systemGroupedBackground
+            cell.layer.cornerRadius = 12
+            cell.layer.shadowColor = UIColor.systemGreen.cgColor
+            cell.layer.shadowOpacity = 1
+            cell.layer.shadowRadius = 6
+            cell.clipsToBounds = true
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: detailId, for: indexPath) as! DetailContentCell
+            cell.anime = searchResults[indexPath.item]
+            //cell.backgroundColor = .systemGroupedBackground
+            cell.layer.cornerRadius = 12
+            cell.backgroundColor = .white.withAlphaComponent(0.5)
+            cell.clipsToBounds = true
+            return cell
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -155,6 +167,16 @@ extension AnimeController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
+        if indexPath.section == 1{
+            let urlString = searchResults[indexPath.item].videoUrlString
+            guard let selectedUrl = URL(string: urlString) else{ return }
+            let avPlayer = AVPlayer(url: selectedUrl)
+            let playerController = AVPlayerViewController()
+            playerController.player = avPlayer
+            present(playerController, animated: true) {
+                playerController.player?.play()
+            }
+        }
     }
 }
 
